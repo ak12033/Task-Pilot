@@ -21,6 +21,7 @@ await connectDB()
 app.use(express.json())
 
 // Routes
+app.get('/', (req, res) => res.send("API Working"));
 app.use('/api/auth',authRoutes);
 app.use('/api/users',userRoutes);
 app.use('/api/tasks',taskRoutes);
