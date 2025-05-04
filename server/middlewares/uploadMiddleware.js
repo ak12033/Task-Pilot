@@ -1,26 +1,17 @@
-import multer from "multer";
+import multer from 'multer';
+import { v2 as cloudinary } from 'cloudinary';
+import { CloudinaryStorage } from 'multer-storage-cloudinary';
 
-// Configure storage
-const storage = multer.diskStorage({
-    destination: (req,file,cb) => {
-        cb(null,'uploads/');
-    },
-    filename: (req,file,cb) => {
-        cb(null,`${Date.now()}-${file.originalname}`);
-    },
+// Configure Cloudinary storage
+const storage = new CloudinaryStorage({
+  cloudinary: cloudinary,
+  params: {
+    folder: 'TaskPilot', // Cloudinary folder (optional)
+    allowed_formats: ['jpg', 'jpeg', 'png'], // Allow specific formats
+  },
 });
 
-// File filter
-const fileFilter = (req, file, cb) => {
-    const allowedTypes = ['image/jpeg', 'image/png', 'image/jpg'];
-    if(allowedTypes.includes(file.mimetype)) {
-        cb(null, true);
-    }
-    else {
-        cb(new Error('Only .jpeg, .jpg and .png formats are allowed'), false);
-    }
-};
+// Multer instance using Cloudinary storage
+const upload = multer({ storage });
 
-const upload = multer({storage, fileFilter})
-
-export default upload
+export default upload;

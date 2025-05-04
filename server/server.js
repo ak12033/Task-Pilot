@@ -8,6 +8,7 @@ import userRoutes from './routes/userRoutes.js'
 import taskRoutes from './routes/taskRoutes.js'
 import reportRoutes from './routes/reportRoutes.js'
 import { fileURLToPath } from "url";
+import connectCloudinary from './config/cloudinary.js';
 
 const app = express()
 
@@ -16,6 +17,8 @@ app.use(cors())
 
 // Connect to database
 await connectDB()
+
+await connectCloudinary()
 
 // Middleware
 app.use(express.json())
