@@ -143,6 +143,9 @@ To get started with the Task-Pilot project, follow these steps:
    PORT = 3000
    JWT_SECRET = your-jwt-secret
    ADMIN_INVITE_TOKEN = 1111111
+   CLOUDINARY_NAME = your-cloudinary-name
+   CLOUDINARY_API_KEY = your-cloudinary-api-key
+   CLOUDINARY_SECRET_KEY = your-cloudinary-secret-key
    ```
 
    In the frontend/.env file:
